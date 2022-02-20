@@ -14,7 +14,7 @@ class OfferImageWidget extends StatelessWidget {
                 tag: car.id,
                 child: Image.network(
                   car.imageLink,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 )),
           );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/models/car.dart';
+import 'package:flutter_assignment/presentation/core/size_config.dart';
 
 class OtherOfferWidget extends StatelessWidget {
   Car car;
@@ -52,6 +53,7 @@ class OtherOfferWidget extends StatelessWidget {
                 ),
               ),
               Container(
+                width: SizeConfig.blockSizeVertical*13,
                 child: Hero(
                   tag: car.id,
                   child: Image.network(car.imageLink, fit: BoxFit.fill,)

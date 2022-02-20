@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/presentation/account/account_page.dart';
 import 'package:flutter_assignment/presentation/add/add_offer_page.dart';
+import 'package:flutter_assignment/presentation/core/size_config.dart';
 import 'package:flutter_assignment/presentation/discover/discover_page.dart';
 import 'package:flutter_assignment/presentation/options/options_page.dart';
 import 'package:flutter_assignment/presentation/search/search_page.dart';
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return PageView(
         onPageChanged: (index) {
           setState(() => _currentScaffold = index);
