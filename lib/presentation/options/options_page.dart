@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/login/bloc/login_bloc.dart';
+import 'package:flutter_assignment/presentation/core/size_config.dart';
 import 'package:flutter_assignment/theme/bloc/theme_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -38,7 +39,7 @@ class OptionsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Container(
-              height: 80,
+              height: SizeConfig.blockSizeVertical*10,
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -56,13 +57,13 @@ class OptionsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                      width: 50,
+                      width: SizeConfig.blockSizeHorizontal*13,
                       child: Icon(
                         MdiIcons.formatPaint,
-                        size: 35,
+                        size: SizeConfig.blockSizeHorizontal*9,
                       )),
                   Container(
-                    width: 225,
+                    width: SizeConfig.blockSizeHorizontal*55,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -70,12 +71,12 @@ class OptionsPage extends StatelessWidget {
                         Text(
                           'Change theme',
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: SizeConfig.blockSizeHorizontal*5, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Switch between light and dark',
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: SizeConfig.blockSizeHorizontal*3.75,
                               color: Theme.of(context).dividerColor),
                         ),
                       ],
@@ -100,7 +101,7 @@ class OptionsPage extends StatelessWidget {
                     .add(Logging(password: '', username: 'Guest'));
               },
               child: Container(
-                height: 80,
+                height: SizeConfig.blockSizeVertical*10,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
@@ -115,16 +116,17 @@ class OptionsPage extends StatelessWidget {
                   ],
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                        width: 50,
-                        child: Icon(
-                          MdiIcons.account,
-                          size: 35,
+                        width: SizeConfig.blockSizeHorizontal*20,
+                        child: Center(
+                          child: Icon(
+                            MdiIcons.account,
+                            size: SizeConfig.blockSizeHorizontal*10,
+                          ),
                         )),
                     Container(
-                      width: 290,
+                      width: SizeConfig.blockSizeHorizontal*55,
                       child: BlocBuilder<LoginBloc, LoginState>(
                         builder: (context, state) {
                           return Column(
@@ -136,12 +138,12 @@ class OptionsPage extends StatelessWidget {
                                     ? 'You can\'t log out'
                                     : 'Log out',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: SizeConfig.blockSizeHorizontal*5, fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 'from ' + state.username,
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: SizeConfig.blockSizeHorizontal*3.75,
                                     color: Theme.of(context).dividerColor),
                               ),
                             ],

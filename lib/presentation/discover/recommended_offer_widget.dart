@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/models/car.dart';
+import 'package:flutter_assignment/presentation/core/size_config.dart';
 import 'package:flutter_assignment/presentation/offer/other_offer_widget.dart';
 
 class RecommendedOfferWidget extends StatelessWidget {
@@ -33,7 +34,7 @@ class RecommendedOfferWidget extends StatelessWidget {
             child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                    height: 40,
+                    height: SizeConfig.blockSizeVertical*5,
                     child: StatsWidget(car: car))),
           ),
         ],

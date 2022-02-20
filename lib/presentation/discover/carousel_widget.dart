@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/presentation/core/size_config.dart';
 import 'package:flutter_assignment/server/car_list.dart';
 
 import 'recommended_offer_widget.dart';
@@ -47,7 +48,7 @@ void initState() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Container(
-            height: 240,
+            height: SizeConfig.blockSizeVertical*28,
             child: PageView.builder(
                 allowImplicitScrolling: true,
                 controller: _pageViewController,
