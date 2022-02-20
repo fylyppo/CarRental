@@ -51,4 +51,10 @@ class _MyAppState extends State<MyApp> {
     if(state.darkTheme == 1) return appThemeData[AppTheme.Dark]!;
     else return appThemeData[AppTheme.Light]!;
   }
+
+  @override
+  void dispose() {
+    _router.dispose();
+    super.dispose();
+  }
 }

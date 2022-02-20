@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/login/bloc/login_bloc.dart';
 import 'package:flutter_assignment/theme/bloc/theme_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/src/provider.dart';
 
@@ -11,6 +13,13 @@ class OptionsPage extends StatelessWidget {
     this.scaffoldController, {
     Key? key,
   }) : super(key: key);
+
+  bool _checkIfGuest(LoginState state) {
+    if (state == LoginInitial(password: '', username: 'Guest'))
+      return true;
+    else
+      return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,16 +56,28 @@ class OptionsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    width: 50,
-                    child: Icon(MdiIcons.formatPaint, size: 35,)),
+                      width: 50,
+                      child: Icon(
+                        MdiIcons.formatPaint,
+                        size: 35,
+                      )),
                   Container(
                     width: 225,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Change theme', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                        Text('Switch between light and dark', style: TextStyle(fontSize: 14, color: Theme.of(context).dividerColor),),
+                        Text(
+                          'Change theme',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'Switch between light and dark',
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).dividerColor),
+                        ),
                       ],
                     ),
                   ),
@@ -67,6 +88,69 @@ class OptionsPage extends StatelessWidget {
                         .add(ThemeChanged(darkTheme: newValue ? 0 : 1)),
                   ),
                 ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 10),
+            child: InkWell(
+              onTap: () {
+                context
+                    .read<LoginBloc>()
+                    .add(Logging(password: '', username: 'Guest'));
+              },
+              child: Container(
+                height: 80,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Theme.of(context).cardColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Theme.of(context).shadowColor,
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                        width: 50,
+                        child: Icon(
+                          MdiIcons.account,
+                          size: 35,
+                        )),
+                    Container(
+                      width: 290,
+                      child: BlocBuilder<LoginBloc, LoginState>(
+                        builder: (context, state) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                _checkIfGuest(state)
+                                    ? 'You can\'t log out'
+                                    : 'Log out',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'from ' + state.username,
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context).dividerColor),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
