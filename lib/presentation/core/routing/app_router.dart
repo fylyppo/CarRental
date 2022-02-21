@@ -6,6 +6,8 @@ import 'package:flutter_assignment/presentation/offer/offer_page.dart';
 import 'package:flutter_assignment/theme/bloc/theme_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../category_page.dart';
+
 class AppRouter {
   final ThemeBloc themeBloc = ThemeBloc();
   final LoginBloc _loginBloc = LoginBloc();
@@ -14,18 +16,19 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (_) => MultiBlocProvider(
-            providers: [
-              BlocProvider.value(
-                value: themeBloc),
-                BlocProvider.value(
-                value: _loginBloc),
-            ],
-            child: HomePage(),
-        ));
+            builder: (_) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider.value(value: themeBloc),
+                    BlocProvider.value(value: _loginBloc),
+                  ],
+                  child: HomePage(),
+                ));
       case '/offer':
         final car = settings.arguments as Car;
         return MaterialPageRoute(builder: (_) => OfferPage(car));
+      case '/category':
+        final category = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => CategoryPage(category));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
@@ -36,9 +39,8 @@ class AppRouter {
     }
   }
 
-  void dispose(){
+  void dispose() {
     themeBloc.close();
     _loginBloc.close();
   }
-
 }
