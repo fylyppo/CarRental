@@ -16,11 +16,8 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-            builder: (_) => MultiBlocProvider(
-                  providers: [
-                    BlocProvider.value(value: themeBloc),
-                    BlocProvider.value(value: _loginBloc),
-                  ],
+            builder: (_) => BlocProvider(
+                  create: (context) => LoginBloc(),
                   child: HomePage(),
                 ));
       case '/offer':
@@ -40,7 +37,6 @@ class AppRouter {
   }
 
   void dispose() {
-    themeBloc.close();
     _loginBloc.close();
   }
 }
